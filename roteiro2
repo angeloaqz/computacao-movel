@@ -1,0 +1,214 @@
+//experimento//
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Padding(
+        // 3. Espaçamento alterado: era EdgeInsets.all(16), agora 24
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.lock,
+              // 1. Tamanho do ícone alterado: era 80, agora 120
+              size: 120,
+            ),
+
+            // 3. Espaçamento alterado: era 20, agora 30
+            const SizedBox(height: 30),
+
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            const TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Senha',
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            // 4. Texto adicionado: "Esqueceu a senha?"
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text('Esqueceu a senha?'),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {},
+              // 2. Texto do botão alterado: era 'Entrar', agora 'Acessar'
+              child: const Text('Acessar'),
+            ),
+
+            const SizedBox(height: 12),
+
+            // 5. Segundo botão adicionado
+            OutlinedButton(
+              onPressed: () {},
+              child: const Text('Criar conta'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//exercicio 1// 
+public class Exercicio1Page : ContentPage
+{
+    public Exercicio1Page()
+    {
+        Content = new VerticalStackLayout
+        {
+            Padding = 30,
+            Spacing = 20,
+
+            Children =
+            {
+                new Label
+                {
+                    Text = "Minha tela",
+                    FontSize = 28,
+                    FontAttributes = FontAttributes.Bold,
+                    HorizontalOptions = LayoutOptions.Center
+                },
+
+                new Image
+                {
+                    Source = "logo.png",
+                    HeightRequest = 100,
+                    WidthRequest = 100,
+                    HorizontalOptions = LayoutOptions.Center
+                },
+
+                new Button
+                {
+                    Text = "Entrar"
+                },
+
+                new Button
+                {
+                    Text = "Cadastrar"
+                },
+
+                new Label
+                {
+                    Text = "Bem-vindo ao aplicativo!",
+                    HorizontalOptions = LayoutOptions.Center
+                }
+            }
+        };
+    }
+}
+
+//exercicio 2// 
+public class Exercicio2Page : ContentPage
+{
+    public Exercicio2Page()
+    {
+        Content = new HorizontalStackLayout
+        {
+            Padding = 20,
+            Spacing = 30,
+            HorizontalOptions = LayoutOptions.Center,
+
+            Children =
+            {
+                new Button
+                {
+                    Text = "Início"
+                },
+
+                new Button
+                {
+                    Text = "Pesquisar"
+                },
+
+                new Button
+                {
+                    Text = "Perfil"
+                }
+            }
+        };
+    }
+}
+
+//exercicio 3// 
+public class Exercicio3Page : ContentPage
+{
+    public Exercicio3Page()
+    {
+        var imagem = new Image
+        {
+            Source = "produto.png",
+            HeightRequest = 180,
+            Aspect = Aspect.AspectFit
+        };
+
+        var nome = new Label
+        {
+            Text = "Notebook Gamer",
+            FontSize = 24,
+            FontAttributes = FontAttributes.Bold
+        };
+
+        var descricao = new Label
+        {
+            Text = "Notebook ideal para jogos e programação.",
+            FontSize = 16
+        };
+
+        var preco = new Label
+        {
+            Text = "R$ 4.999,00",
+            FontSize = 22,
+            FontAttributes = FontAttributes.Bold
+        };
+
+        var comprar = new Button
+        {
+            Text = "Comprar"
+        };
+
+        Content = new Border
+        {
+            Padding = 20,
+            Margin = 20,
+            StrokeThickness = 1,
+
+            Content = new VerticalStackLayout
+            {
+                Spacing = 15,
+
+                Children =
+                {
+                    imagem,
+                    nome,
+                    descricao,
+                    preco,
+                    comprar
+                }
+            }
+        };
+    }
+}
