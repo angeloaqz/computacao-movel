@@ -1,0 +1,281 @@
+//exercicio 1// 
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const TelaInicial(),
+    );
+  }
+}
+
+class TelaInicial extends StatelessWidget {
+  const TelaInicial({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela Inicial"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Você está na Tela Inicial"),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TelaDetalhe(),
+                  ),
+                );
+              },
+              child: const Text("Ir para Detalhe"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TelaDetalhe extends StatelessWidget {
+  const TelaDetalhe({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela de Detalhe"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Você está na Tela de Detalhe"),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Voltar"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//exercicio 2// 
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const Tela1(),
+    );
+  }
+}
+
+class Tela1 extends StatelessWidget {
+  const Tela1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela 1"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Tela2(nome: "Maria"),
+              ),
+            );
+          },
+          child: const Text("Enviar Nome"),
+        ),
+      ),
+    );
+  }
+}
+
+class Tela2 extends StatelessWidget {
+  final String nome;
+
+  const Tela2({
+    super.key,
+    required this.nome,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela 2"),
+      ),
+      body: Center(
+        child: Text("Olá, $nome"),
+      ),
+    );
+  }
+}
+
+//exercicio 3// 
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const Tela1(),
+    );
+  }
+}
+
+class Tela1 extends StatefulWidget {
+  const Tela1({super.key});
+
+  @override
+  State<Tela1> createState() => _Tela1State();
+}
+
+class _Tela1State extends State<Tela1> {
+  int valorAtual = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela 1"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Valor atual: $valorAtual"),
+
+            ElevatedButton(
+              onPressed: () async {
+                final resultado = await Navigator.push<int>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Tela2(),
+                  ),
+                );
+
+                if (resultado != null) {
+                  setState(() {
+                    valorAtual = resultado;
+                  });
+                }
+              },
+              child: const Text("Escolher Número"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Tela2 extends StatelessWidget {
+  const Tela2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Tela 2"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, 10);
+              },
+              child: const Text("Enviar 10"),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, 20);
+              },
+              child: const Text("Enviar 20"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//exercicio 4// 
+class Tela2 extends StatelessWidget {
+  Tela2({super.key});
+
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Escolher Número"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: "Digite um número",
+              ),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                final numero = int.tryParse(controller.text);
+
+                if (numero != null) {
+                  Navigator.pop(context, numero);
+                }
+              },
+              child: const Text("Enviar"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
